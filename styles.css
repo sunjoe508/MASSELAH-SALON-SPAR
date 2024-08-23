@@ -388,4 +388,25 @@ textarea {
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .hero {
+        padding: 20px;
+    }
+
+    .scrolling-image-container {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .scrolling-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
 </style>

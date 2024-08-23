@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masalah Salon & Spa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles */
+        #thankYouMessage {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            color: #28a745;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Masalah Salon & Spa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="images.html"><i class="fas fa-images"></i> Images</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacts.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="social.html"><i class="fas fa-share-alt"></i> Social Media</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero text-center text-white d-flex justify-content-center align-items-center">
+        <div class="container">
+            <!-- Scrolling Image Section -->
+            <div class="scrolling-image-container">
+                <img src="HEADER IMAGE.jpg" alt="Scrolling Image" class="scrolling-image">
+            </div>
+            <h1 class="display-4">Welcome to Masalah Salon & Spa</h1>
+            <p class="lead">Experience luxury and relaxation.</p>
+            <a class="btn btn-primary btn-lg mt-3" href="https://forms.gle/XD7YQ4ks4doRtTC48">Book an Appointment</a>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <section class="services text-center">
+            <h2 class="mb-5">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="LOC2.jpeg" class="card-img-top" alt="Hair Work">
+                        <div class="card-body">
+                            <h5 class="card-title">Hair Work</h5>
+                            <p class="card-text">Stylish cuts and treatments.</p>
+                            <a class="btn btn-warning" href="https://yourbookingpage.com/hair-work">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="body.jpg" class="card-img-top" alt="Body Work">
+                        <div class="card-body">
+                            <h5 class="card-title">Body Work</h5>
+                            <p class="card-text">Relaxing massages and treatments.</p>
+                            <a class="btn btn-warning" href="https://yourbookingpage.com/body-work">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="NAILWORK 1.jpeg" class="card-img-top" alt="Nail Work">
+                        <div class="card-body">
+                            <h5 class="card-title">Nail Work</h5>
+                            <p class="card-text">Manicures and pedicures.</p>
+                            <a class="btn btn-warning" href="nailwork.html">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Thank You Message -->
+    <div id="thankYouMessage">
+        THANK YOU FOR BOOKING WITH US!
+    </div>
+
+    <footer class="text-center py-4 bg-dark text-white">
+        <p>&copy; 2024 Masalah Salon & Spa | Designed by You</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Hide preloader when page is loaded
+        window.addEventListener('load', function() {
+            var preloader = document.getElementById('preloader');
+            preloader.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

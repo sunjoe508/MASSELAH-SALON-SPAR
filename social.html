@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media - Masalah Salon & Spa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .social-buttons a {
+            margin: 15px 0;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5rem;
+            transition: transform 0.3s, color 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+        .social-buttons a i {
+            font-size: 2.5rem; /* Adjust icon size here */
+            transition: color 0.3s;
+        }
+        .social-buttons a:hover {
+            transform: translateY(-5px); /* Lift effect */
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .social-buttons a:hover i {
+            color: #DD761C; /* Shift color on hover */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Optional: change color on hover */
+        }
+        .btn-info:hover {
+            background-color: #007bb5; /* Optional: change color on hover */
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* Optional: change color on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Masalah Salon & Spa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="images.html"><i class="fas fa-images"></i> Images</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacts.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="nav-item"><a class="nav-link active" href="social.html"><i class="fas fa-share-alt"></i> Social Media</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Follow Us</h2>
+        <div class="social-buttons">
+            <a href="https://facebook.com/munga_the_storyteller" class="btn btn-primary"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://twitter.com/munga_the_storyteller" class="btn btn-info"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="https://instagram.com/munga_the_storyteller" class="btn btn-danger"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://linkedin.com/in/munga-the-storyteller" class="btn btn-primary"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="https://youtube.com/user/munga_the_storyteller" class="btn btn-danger"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://pinterest.com/munga_the_storyteller" class="btn btn-danger"><i class="fab fa-pinterest-p"></i> Pinterest</a>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 bg-dark text-white">
+        <a class="btn btn-light" href="index.html"><i class="fas fa-home"></i> Back to Home</a>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

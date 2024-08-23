@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #361212, #3b686e);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        h1 {
+            color: #DD761C;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .gallery-item .actions {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .gallery-item .actions button {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .gallery-item .actions button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        .gallery-item .actions i {
+            font-size: 1.2em;
+        }
+        .gallery-item .actions .like i {
+            color: #ff0000;
+        }
+        .gallery-item .actions .share i {
+            color: #00ff00;
+        }
+        .gallery-item .actions .delete i {
+            color: #ff0000;
+        }
+        .share-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            top: 35px;
+            left: 0;
+            width: 180px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        .share-dropdown a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .share-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        .share-dropdown i {
+            margin-right: 10px;
+        }
+        .upload-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .upload-container input[type="file"] {
+            display: none;
+        }
+        .upload-container label {
+            padding: 10px 20px;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .upload-container label:hover {
+            background-color: #0056b3;
+        }
+        .back-home {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #DD761C;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .back-home:hover {
+            background-color: #c75d2a;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+        .modal-content img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .modal-content .download {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .modal-content .download:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-camera-retro"></i> Photo Gallery</h1>
+        <a href="index.html" class="back-home">Back Home</a>
+        <div class="upload-container">
+            <input type="file" id="file-upload" accept="image/*" multiple>
+            <label for="file-upload">Upload Images</label>
+        </div>
+        <div class="gallery" id="gallery">
+            <!-- Album holder in the gallery -->
+            <!-- Images uploaded will be organized here -->
+        </div>
+    </div>
+
+    <!-- Function download action section -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Enlarged Photo">
+            <a id="download-link" class="download" download>Download Image</a>
+        </div>
+    </div>
+
+    <script>
+        const likes = {};
+
+        // Function to handle image sharing
+        function shareImage(imageUrl, event) {
+            const url = encodeURIComponent(imageUrl);
+            const shareOptions = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+                twitter: `https://twitter.com/share?url=${url}`,
+                linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${url}`,
+                whatsapp: `https://api.whatsapp.com/send?text=${url}`
+            };
+            const shareDropdown = document.createElement('div');
+            shareDropdown.className = 'share-dropdown';
+            shareDropdown.innerHTML = `
+                <a href="${shareOptions.facebook}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="${shareOptions.twitter}" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="${shareOptions.linkedin}" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="${shareOptions.whatsapp}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            `;
+            document.body.appendChild(shareDropdown);
+            shareDropdown.style.position = 'absolute';
+            shareDropdown.style.left = `${event.clientX}px`;
+            shareDropdown.style.top = `${event.clientY}px`;
+            shareDropdown.style.display = 'block';
+
+            document.addEventListener('click', function(e) {
+                if (!shareDropdown.contains(e.target)) {
+                    shareDropdown.style.display = 'none';
+                }
+            }, { once: true });
+        }
+
+        // Function to preview uploaded images
+        function previewImages(files) {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            for (let i = 0; i < files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imageId = `image-${i}`;
+                    gallery.innerHTML += `
+                        <div class="gallery-item">
+                            <img src="${e.target.result}" alt="Photo ${i + 1}" onclick="openModal('${e.target.result}')">
+                            <div class="actions">
+                                <button class="like" onclick="likeImage('${imageId}'); event.stopPropagation();"><i class="fas fa-heart"></i><span class="like-count">${likes[imageId] || 0}</span></button>
+                                <button class="share" onclick="shareImage('${e.target.result}', event); event.stopPropagation();"><i class="fas fa-share"></i></button>
+                                <button class="delete" onclick="deleteImage('${imageId}'); event.stopPropagation();"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        }
+
+        // Function to open modal with image
+        function openModal(imageUrl) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            const downloadLink = document.getElementById('download-link');
+            modal.style.display = 'flex';
+            modalImage.src = imageUrl;
+            downloadLink.href = imageUrl;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Function to handle image deletion
+        function deleteImage(imageId) {
+            const imageElement = document.querySelector(`[onclick="openModal('${imageId}')"]`).parentElement.parentElement;
+            imageElement.remove();
+        }
+
+        // Function to handle image liking
+        function likeImage(imageId) {
+            if (!localStorage.getItem(imageId)) {
+                if (!likes[imageId]) {
+                    likes[imageId] = 0;
+                }
+                likes[imageId]++;
+                localStorage.setItem(imageId, true);
+                document.querySelector(`[onclick="likeImage('${imageId}'); event.stopPropagation();"] .like-count`).textContent = likes[imageId];
+            }
+        }
+
+        // Event listener for file upload
+        document.getElementById('file-upload').addEventListener('change', function () {
+            previewImages(this.files);
+        });
+    </script>
+</body>
+</html>

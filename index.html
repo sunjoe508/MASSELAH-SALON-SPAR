@@ -22,6 +22,20 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -52,11 +66,10 @@
             <!-- Scrolling Image Section -->
             <div class="scrolling-image-container">
                 <img src="HEADER IMAGE.jpg" alt="Scrolling Image" class="scrolling-image img-fluid">
-
             </div>
             <h1 class="display-4">Welcome to Masalah Salon & Spa</h1>
             <p class="lead">Experience luxury and relaxation.</p>
-            <a class="btn btn-primary btn-lg mt-3" href="https://forms.gle/XD7YQ4ks4doRtTC48">Book an Appointment</a>
+            <a class="btn btn-primary btn-lg mt-3" href="https://forms.gle/XD7YQ4ks4doRtTC48" target="_blank">Book an Appointment</a>
         </div>
     </header>
 
@@ -70,7 +83,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Hair Work</h5>
                             <p class="card-text">Stylish cuts and treatments.</p>
-                            <a class="btn btn-warning" href="https://yourbookingpage.com/hair-work">Book Now</a>
+                            <a class="btn btn-warning" href="https://forms.gle/XD7YQ4ks4doRtTC48" target="_blank">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +93,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Body Work</h5>
                             <p class="card-text">Relaxing massages and treatments.</p>
-                            <a class="btn btn-warning" href="https://yourbookingpage.com/body-work">Book Now</a>
+                            <a class="btn btn-warning" href="https://forms.gle/XD7YQ4ks4doRtTC48" target="_blank">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +103,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Nail Work</h5>
                             <p class="card-text">Manicures and pedicures.</p>
-                            <a class="btn btn-warning" href="nailwork.html">Book Now</a>
+                            <a class="btn btn-warning" href="https://forms.gle/XD7YQ4ks4doRtTC48" target="_blank">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -115,6 +128,16 @@
         window.addEventListener('load', function() {
             var preloader = document.getElementById('preloader');
             preloader.style.display = 'none';
+        });
+
+        // Script to handle redirection after form submission (only for demonstration, actual redirection will need to be handled in Google Forms settings)
+        document.querySelectorAll('.btn-warning').forEach(function(button) {
+            button.addEventListener('click', function() {
+                window.location.href = "https://forms.gle/XD7YQ4ks4doRtTC48";
+                setTimeout(function() {
+                    window.location.href = "index.html";
+                }, 5000); // Adjust delay as needed
+            });
         });
     </script>
 </body>

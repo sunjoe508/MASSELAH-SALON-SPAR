@@ -48,28 +48,37 @@
         <a class="btn btn-light" href="index.html"><i class="fas fa-home"></i> Back to Home</a>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
+        $(document).ready(function() {
+            $('#contactForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
 
-            var mailtoLink = `mailto:joemunga329@gmail.com?subject=Contact%20Form%20Submission&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(email)}%0AMessage:%20${encodeURIComponent(message)}`;
-
-            // Attempt to open the email client
-            window.location.href = mailtoLink;
-
-            // Display a message to the user
-            document.getElementById('responseMessage').innerHTML = `
-                <div class="alert alert-success" role="alert">
-                    Your message has been sent successfully!
-                </div>
-            `;
+                $.ajax({
+                    type: 'POST',
+                    url: '/send_email',
+                    data: formData,
+                    success: function(response) {
+                        $('#responseMessage').html(`
+                            <div class="alert alert-success" role="alert">
+                                Your message has been sent successfully!
+                            </div>
+                        `);
+                        $('#contactForm')[0].reset();
+                    },
+                    error: function() {
+                        $('#responseMessage').html(`
+                            <div class="alert alert-danger" role="alert">
+                                Sorry, something went wrong. Please try again later.
+                            </div>
+                        `);
+                    }
+                });
+            });
         });
     </script>
 </body>

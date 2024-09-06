@@ -1,3 +1,4 @@
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -11,9 +12,10 @@ def send_email():
     email = request.form['email']
     message = request.form['message']
 
+    # Create the email content
     msg = MIMEMultipart()
-    msg['From'] = email
-    msg['To'] = 'joemunga329@gmail.com'
+    msg['From'] = os.getenv('SENDER_EMAIL')  # Your email
+    msg['To'] = 'joemunga329@gmail.com'  # Recipient email
     msg['Subject'] = 'New Contact Form Submission'
 
     body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
@@ -22,7 +24,7 @@ def send_email():
     try:
         with smtplib.SMTP('smtp.gmail.com', 587) as server:
             server.starttls()
-            server.login('your_email@gmail.com', 'your_password')
+            server.login(os.getenv('SENDER_EMAIL'), os.getenv('EMAIL_PASSWORD'))  # Your email and password from environment variables
             server.sendmail(msg['From'], msg['To'], msg.as_string())
         return "Thank you for contacting us!"
     except Exception as e:
